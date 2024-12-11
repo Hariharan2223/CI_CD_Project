@@ -11,21 +11,20 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    
+
     steps:
       # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Serve HTML for testing
-      - name: Start a web server
-        uses: peaceiris/actions-http-server@v1
-        with:
-          port: 8080
-          root: ./
-      
-      # Test the HTML file (Basic)
+      # Validate the HTML file using an actively maintained action
       - name: Validate HTML
-        uses: chuhlomin/html-validator-action@v1
+        uses: cyb3r-jak3/html-validator-action@v1.0.0
         with:
-          file: "index.html"
+          files: |
+            index.html
+
+      # Serve HTML using Python's built-in HTTP server
+      - name: Start a web server
+        run: |
+          python3 -m http.server 8080 &
