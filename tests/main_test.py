@@ -3,7 +3,7 @@ from src.main import add, sub
 
 def test_add():
     assert add(2, 3) == 5
-    assert add(99, 1) == 10
+    assert add(99, 1) == 100
 
 
 def test_sub():
